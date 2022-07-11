@@ -1,0 +1,40 @@
+{
+  "name": "gulp-mock-module",
+  "version": "1.0.3",
+  "description": "A file replacement plugin for grunt",
+  "dependencies": {
+    "@types/node": "^14.14.41",
+    "@types/vinyl": "^2.0.4"
+  },
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "mocha": "^7.0.0",
+    "should": "^13.2.3",
+    "typescript": "^4.2.4",
+    "vinyl": "^2.2.1"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "main": "index.js",
+  "types": "index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rayescmata/gulp-mock-module.git"
+  },
+  "keywords": [
+    "gulp",
+    "mock",
+    "module",
+    "plugin",
+    "replace"
+  ],
+  "author": "Raymond Rick Escala Mata <raymond.e.mata@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rayescmata/gulp-mock-module/issues"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}
