@@ -1,8 +1,10 @@
 {
   "name": "gulp-mock-module",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "A file replacement plugin for grunt",
   "devDependencies": {
+    "@types/node": "^18.0.5",
+    "@types/vinyl": "^2.0.6",
     "chai": "^4.3.6",
     "mocha": "^7.0.0",
     "vinyl": "^2.2.1"
