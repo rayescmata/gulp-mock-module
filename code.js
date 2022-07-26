@@ -9,21 +9,28 @@ const fetchImportCode = (codeLines) =>
     // import x from 'y'
     // const x = require('y')
     // const x = require('x/y/z')
-    .filter((line) => line.indexOf("from ") !== -1 || line.includes("require("))
+    .filter(
+      (line) =>
+        // import x from y
+        (line.trim().indexOf('import') === 0 && line.indexOf('from ') !== -1) ||
+        line.includes('require('),
+    )
     .map((original) => {
       let identifyingTarget;
+      console.log('@@@@@@@@@@@@@@@@@@@@@original', original);
       const target = original.split(/['"]/g)[1];
-      const targetDirectories = target.split("/");
+      console.log('@@@@@@@@@@@@@@@@@@@@@target', target);
+      const targetDirectories = target.split('/');
 
-      if (!targetDirectories.includes("..") && !targetDirectories.includes("."))
+      if (!targetDirectories.includes('..') && !targetDirectories.includes('.'))
         return;
 
       const indexInFile = codeLines.indexOf(original);
 
-      if (target.includes("/")) {
+      if (target.includes('/')) {
         identifyingTarget = targetDirectories
-          .filter((subFolder) => !["..", "."].includes(subFolder))
-          .join("/");
+          .filter((subFolder) => !['..', '.'].includes(subFolder))
+          .join('/');
       }
 
       /**
@@ -51,9 +58,10 @@ const fetchImportCode = (codeLines) =>
  */
 const fetchMatchingImportCodes = (fileImports, targetModules) =>
   fileImports.filter(({ identifyingTarget }) =>
-    targetModules.some((targetModule) =>
-      identifyingTarget.includes(targetModule)
-    )
+    targetModules.some(
+      (targetModule) =>
+        !!identifyingTarget && identifyingTarget.includes(targetModule),
+    ),
   );
 
 module.exports = {
